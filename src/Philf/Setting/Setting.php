@@ -135,10 +135,12 @@ class Setting {
      * Store the passed value in to the json file
      * @param $key
      * @param  mixed $value The value(s) to be stored
+     * @param  mixed $filename The setting file to save as, or null to use set filename
      * @return void
      */
-    public function set($key, $value)
+    public function set($key, $value, $filename = null)
     {
+        if (!$filename) $filename = $this->filename;
         array_set($this->settings,$key,$value);
         $this->save($this->path, $this->filename);
         $this->load($this->path, $this->filename);
